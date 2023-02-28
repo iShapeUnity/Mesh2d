@@ -15,7 +15,7 @@ To use iShape.Mesh2d in your Unity project, follow these steps:
 ## Usage
 To use iShape.Mesh2d in your Unity project, you'll need to import the iShape.Mesh2d namespace in your scripts. Here's an example of how to use it:
 
-```
+```csharp
 using iShape.Mesh2d;
 using Unity.Collections;
 using Unity.Mathematics;

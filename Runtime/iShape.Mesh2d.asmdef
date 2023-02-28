@@ -1,0 +1,28 @@
+{
+    "name": "iShape.Mesh2d",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Collections",
+        "Unity.Mathematics",
+        "UnityEngine",
+        "UnityEngine.Rendering"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.mathematics",
+            "expression": "1.2.6"
+        },
+        {
+            "name": "com.unity.collections",
+            "expression": "1.2.4"
+        }
+    ],
+    "noEngineReferences": false
+}

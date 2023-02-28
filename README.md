@@ -70,3 +70,5 @@ public class Example : MonoBehaviour {
 In this example, we're generating four different stroke meshes (for an edge, a rectangle, a circle, and a soft star) and adding them to a NativeColorMesh. Then, we're setting the resulting mesh as the MeshFilter's mesh.
 
 For more information on how to use iShape.Mesh2d, please see [MeshGenerator](https://github.com/iShapeUnity/Mesh2d/blob/main/Runtime/iShape/Mesh2d/MeshGenerator.cs)
+
+Minimal working project could be found at [Mesh2Test](https://github.com/iShapeUnity/Mesh2Test)

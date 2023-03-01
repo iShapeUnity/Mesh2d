@@ -75,6 +75,31 @@ namespace iShape.Mesh2d {
         public static NativePrimitiveMesh StrokeForSoftStar(float2 center, float smallRadius, float largeRadius, int count, StrokeStyle strokeStyle, float z, Allocator allocator) {
             return PrimitiveStroke.StrokeForSoftStar(center, smallRadius, largeRadius, count, strokeStyle, z, allocator);
         }
+        
+        /// <summary>
+        /// Generates a shape mesh for a rectangle.
+        /// </summary>
+        /// <param name="center">The center point of the rectangle.</param>
+        /// <param name="size">The size of the rectangle.</param>
+        /// <param name="z">The Z position of the shape.</param>
+        /// <param name="allocator">The memory allocator to use.</param>
+        /// <returns>A mesh representing the shape.</returns>
+        public static NativePrimitiveMesh Rect(float2 center, float2 size, float z, Allocator allocator) {
+            return PrimitiveShape.Rect(center, size, z, allocator);
+        }
+        
+        /// <summary>
+        /// Generates a shape mesh for a circle.
+        /// </summary>
+        /// <param name="center">The center point of the circle.</param>
+        /// <param name="radius">The radius of the circle.</param>
+        /// <param name="count">The number of segments to use when generating the circle.</param>
+        /// <param name="z">The Z position of the shape.</param>
+        /// <param name="allocator">The memory allocator to use.</param>
+        /// <returns>A mesh representing the shape.</returns>
+        public static NativePrimitiveMesh Circle(float2 center, float radius, int count, float z, Allocator allocator) {
+            return PrimitiveShape.Circle(center, radius, count, z, allocator);
+        }
     }
 
 }

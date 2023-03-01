@@ -56,8 +56,17 @@ public class Example : MonoBehaviour {
         
             // Generate a yellow stroke mesh for a soft star
             var starStyle = new StrokeStyle(0.05f);
-            var starMesh = MeshGenerator.StrokeForSoftStar(float2.zero, 0.4f,0.7f, 64, starStyle, 0, Allocator.Temp);
+            var starMesh = MeshGenerator.StrokeForSoftStar(float2.zero, 0.4f, 0.7f, 64, starStyle, 0, Allocator.Temp);
             mesh.AddAndDispose(starMesh, Color.yellow);
+            
+            // Generate a white circle mesh
+            var circleShape = MeshGenerator.Circle(new float2(6, 0), 1.0f, 16, 0, Allocator.Temp);
+            mesh.AddAndDispose(circleShape, Color.white);
+            
+            // Generate a white rectangle mesh
+            var rectShape = MeshGenerator.Rect(new float2(-6, 0), new float2(2, 2), 0, Allocator.Temp);
+            mesh.AddAndDispose(rectShape, Color.white);
+            
             
             // Set the generated mesh as the MeshFilter's mesh
             var meshFilter = this.GetComponent<MeshFilter>();

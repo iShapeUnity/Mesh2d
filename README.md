@@ -23,6 +23,7 @@ using UnityEngine;
 
 public class Example : MonoBehaviour {
     void Start() {
+    
         // Create a new NativeColorMesh with a capacity of 256 vertices
         var mesh = new NativeColorMesh(256, Allocator.Temp);
         
@@ -66,7 +67,6 @@ public class Example : MonoBehaviour {
         // Generate a white rectangle mesh
         var rectShape = MeshGenerator.Rect(new float2(-6, 0), new float2(2, 2), 0, Allocator.Temp);
         mesh.AddAndDispose(rectShape, Color.white);
-
 
         // Set the generated mesh as the MeshFilter's mesh
         var meshFilter = this.GetComponent<MeshFilter>();

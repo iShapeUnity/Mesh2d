@@ -22,6 +22,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 public class Example : MonoBehaviour {
+
     void Start() {
     
         // Create a new NativeColorMesh with a capacity of 256 vertices

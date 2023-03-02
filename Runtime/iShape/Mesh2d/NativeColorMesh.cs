@@ -17,6 +17,16 @@ namespace iShape.Mesh2d {
             this.triangles = new NativeList<int>(3 * capacity, allocator);
         }
 
+        public void Add(NativeColorMesh colorMesh) {
+            int count = this.vertices.Length;
+            this.vertices.AddRange(colorMesh.vertices);
+            this.colors.AddRange(colorMesh.colors);
+            for (int i = 0; i < colorMesh.triangles.Length; i++) {
+                int j = colorMesh.triangles[i];
+                this.triangles.Add(j + count);    
+            }
+        }
+        
         public void Add(NativePrimitiveMesh primitiveMesh, Color color) {
             int count = this.vertices.Length;
             float4 clr = new float4(color.r, color.g, color.b, color.a);
@@ -30,24 +40,32 @@ namespace iShape.Mesh2d {
             }
         }
         
+        public void Add(StaticPrimitiveMesh primitiveMesh, Color color) {
+            int count = this.vertices.Length;
+            float4 clr = new float4(color.r, color.g, color.b, color.a);
+            this.vertices.AddRange(primitiveMesh.vertices);
+            for (int i = 0; i < primitiveMesh.vertices.Length; ++i) {
+                this.colors.Add(clr);    
+            }
+            for (int i = 0; i < primitiveMesh.triangles.Length; ++i) {
+                int j = primitiveMesh.triangles[i];
+                this.triangles.Add(j + count);    
+            }
+        }
+
+        public void AddAndDispose(NativeColorMesh colorMesh) {
+            Add(colorMesh);
+            colorMesh.Dispose();
+        }
+        
         public void AddAndDispose(NativePrimitiveMesh primitiveMesh, Color color) {
             Add(primitiveMesh, color);
             primitiveMesh.Dispose();
         }
-
-        public void Add(NativeColorMesh colorMesh) {
-            int count = this.vertices.Length;
-            this.vertices.AddRange(colorMesh.vertices);
-            this.colors.AddRange(colorMesh.colors);
-            for (int i = 0; i < colorMesh.triangles.Length; i++) {
-                int j = colorMesh.triangles[i];
-                this.triangles.Add(j + count);    
-            }
-        }
         
-        public void AddAndDispose(NativeColorMesh colorMesh) {
-            Add(colorMesh);
-            colorMesh.Dispose();
+        public void AddAndDispose(StaticPrimitiveMesh primitiveMesh, Color color) {
+            Add(primitiveMesh, color);
+            primitiveMesh.Dispose();
         }
         
         public void Shift(int offset) {

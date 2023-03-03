@@ -91,6 +91,8 @@ namespace iShape.Mesh2d {
             
             mesh.SetVertexBufferData(vertexData, 0, 0, vertexCount);
 
+            vertexData.Dispose();
+            
             int indexCount = triangles.Length;
             mesh.SetIndexBufferParams(indexCount, IndexFormat.UInt32);
             mesh.SetIndexBufferData(triangles, 0, 0, indexCount);

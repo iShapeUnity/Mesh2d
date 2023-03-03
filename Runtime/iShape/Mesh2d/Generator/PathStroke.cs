@@ -35,9 +35,7 @@ namespace iShape.Mesh2d {
 
                 bool isClose = i + 1 == n;
                 JoinJoint(ref vertices, ref triangles, seg0, seg1, r, z, isClose);
-                
-                // JoinJoint(ref vertices, ref triangles, seg0, seg1, r, z);
-                // JoinSegment(ref vertices, ref triangles, seg1, r, strokeStyle.Step, z);
+
                 seg0 = seg1;
             }
 

@@ -40,6 +40,17 @@ namespace iShape.Mesh2d {
             return new Bounds(center, size);
         }
 
+        public static NativeArray<Vector2> ConvertToArray(this NativeList<Vector2> vertices, Allocator allocator) {
+            var result = new NativeArray<Vector2>(vertices, allocator);
+            vertices.Dispose();
+            return result;
+        }
+
+        public static NativeArray<float2> ConvertToFloat(this NativeList<Vector2> vertices, Allocator allocator) {
+            var result = new NativeArray<float2>(vertices.AsArray().Reinterpret<float2>(), allocator);
+            vertices.Dispose();
+            return result;
+        }
     }
 
 }

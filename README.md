@@ -41,13 +41,13 @@ public class Example : MonoBehaviour {
         path.Add(new Vector2(4, -3));
         path.Add(new Vector2(4, 3));
 
-        // convert from List<Vector2> to NativeArray<float2>
-        var floatArray = path.AsArray().Reinterpret<float2>();
+        var floatArray = path.ConvertToFloat(Allocator.Temp);
         
         var pathMesh = MeshGenerator.StrokeByPath(floatArray, false, pathStyle, 0, Allocator.Temp);
+
         mesh.AddAndDispose(pathMesh, Color.magenta);
         
-        path.Dispose();
+        floatArray.Dispose();
         
         // Generate a green stroke mesh for a rectangle
         var rectStyle = new StrokeStyle(0.2f);

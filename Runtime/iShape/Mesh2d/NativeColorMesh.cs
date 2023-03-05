@@ -113,7 +113,7 @@ namespace iShape.Mesh2d {
             mesh.SetIndexBufferParams(indexCount, IndexFormat.UInt32);
             mesh.SetIndexBufferData(triangles.AsArray(), 0, 0, indexCount);
             
-            var bounds = vertices.AsArray().Bounds();
+            var bounds = vertices.Bounds();
             var subMeshDesc = new SubMeshDescriptor(0, indexCount, MeshTopology.Triangles) {
                 bounds = bounds,
                 vertexCount = vertexCount

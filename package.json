@@ -1,6 +1,6 @@
 {
   "name": "com.ishape.mesh2d",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "displayName": "iShape.Mesh2d",
   "description": "A lightweight library for generating 2D stroke meshes in Unity.",
   "unity": "2022.2",

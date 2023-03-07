@@ -51,6 +51,12 @@ namespace iShape.Mesh2d {
             vertices.Dispose();
             return result;
         }
+        
+        public static NativeArray<float2> ConvertToArray(this NativeList<float2> vertices, Allocator allocator) {
+            var result = new NativeArray<float2>(vertices, allocator);
+            vertices.Dispose();
+            return result;
+        }
     }
 
 }

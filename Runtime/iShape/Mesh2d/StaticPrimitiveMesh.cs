@@ -48,6 +48,21 @@ namespace iShape.Mesh2d {
         }
         
         public void Fill(Mesh mesh) {
+#if UNITY_EDITOR
+            DebugFill(mesh);
+#else
+            ReleaseFill(mesh);
+#endif
+        }
+
+        private void DebugFill(Mesh mesh) {
+            mesh.Clear();
+            mesh.vertices = vertices.ToVertices();
+            mesh.triangles = triangles.ToArray();
+            mesh.MarkModified();
+        }
+        
+        private void ReleaseFill(Mesh mesh) {
             int vertexCount = vertices.Length;
             mesh.SetVertexBufferParams(vertexCount, new VertexAttributeDescriptor(VertexAttribute.Position, VertexAttributeFormat.Float32, 3));
             mesh.SetVertexBufferData(vertices, 0, 0, vertexCount);
@@ -63,8 +78,9 @@ namespace iShape.Mesh2d {
             };
 
             mesh.SetSubMesh(0, subMeshDesc, MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontNotifyMeshUsers | MeshUpdateFlags.DontRecalculateBounds);
+            mesh.bounds = bounds;
         }
-        
+
         public Mesh Convert(Color color) {
             var mesh = new Mesh();
             
@@ -76,6 +92,29 @@ namespace iShape.Mesh2d {
         }
 
         public void Fill(Mesh mesh, Color color) {
+#if UNITY_EDITOR
+            DebugFill(mesh, color);
+#else
+            ReleaseFill(mesh, color);
+#endif
+        }
+        
+        private void DebugFill(Mesh mesh, Color color) {
+            mesh.Clear();
+            mesh.vertices = vertices.ToVertices();
+            mesh.triangles = triangles.ToArray();
+
+            var colors = new Color[vertices.Length];
+            for (int i = 0; i < vertices.Length; i++) {
+                colors[i] = color;
+            }
+
+            mesh.colors = colors;
+            
+            mesh.MarkModified();
+        }
+        
+        private void ReleaseFill(Mesh mesh, Color color) {
             int vertexCount = vertices.Length;
             mesh.SetVertexBufferParams(vertexCount, new VertexAttributeDescriptor[]
             {
@@ -105,6 +144,7 @@ namespace iShape.Mesh2d {
 
             mesh.SetSubMesh(0, subMeshDesc, MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontNotifyMeshUsers | MeshUpdateFlags.DontRecalculateBounds);
         }
+        
 
         public void Dispose() {
             this.vertices.Dispose();

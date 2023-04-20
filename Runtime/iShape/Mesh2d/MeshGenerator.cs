@@ -94,11 +94,12 @@ namespace iShape.Mesh2d {
         /// <param name="center">The center point of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
         /// <param name="count">The number of segments to use when generating the circle.</param>
+        /// <param name="isFront">Direction fo a generated triangles</param>
         /// <param name="z">The Z position of the shape.</param>
         /// <param name="allocator">The memory allocator to use.</param>
         /// <returns>A mesh representing the shape.</returns>
-        public static StaticPrimitiveMesh Circle(float2 center, float radius, int count, float z, Allocator allocator) {
-            return PrimitiveShape.Circle(center, radius, count, z, allocator);
+        public static StaticPrimitiveMesh FillCircle(float2 center, float radius, int count, bool isFront, float z, Allocator allocator) {
+            return PrimitiveShape.Circle(center, radius, count, isFront, z, allocator);
         }
     }
 

@@ -35,9 +35,10 @@ namespace iShape.Mesh2d {
             }
 
             var size = max - min;
-            var center = 0.5f * (min + max);
+            var vSize = new Vector3(size.x, size.y, 1f);
+            var vCenter = new Vector3(0.5f * (max.x + min.x), 0.5f * (max.y + min.y), 0f);
             
-            return new Bounds(center, size);
+            return new Bounds(vCenter, vSize);
         }
 
         public static NativeArray<Vector2> ConvertToArray(this NativeList<Vector2> vertices, Allocator allocator) {
@@ -56,6 +57,34 @@ namespace iShape.Mesh2d {
             var result = new NativeArray<float2>(vertices, allocator);
             vertices.Dispose();
             return result;
+        }
+        
+        public static Vector3[] ToVertices(this NativeArray<float3> vertices) {
+            var vectors = new NativeArray<Vector3>(vertices.Reinterpret<Vector3>(), Allocator.Temp);
+            var array = vectors.ToArray();
+            vectors.Dispose();
+            return array;
+        }
+        
+        public static Color[] ToColors(this NativeArray<float4> colors) {
+            var vectors = new NativeArray<Color>(colors.Reinterpret<Color>(), Allocator.Temp);
+            var array = vectors.ToArray();
+            vectors.Dispose();
+            return array;
+        }
+        
+        public static Vector3[] ToVertices(this NativeList<float3> vertices) {
+            var vectors = new NativeArray<Vector3>(vertices.AsArray().Reinterpret<Vector3>(), Allocator.Temp);
+            var array = vectors.ToArray();
+            vectors.Dispose();
+            return array;
+        }
+        
+        public static Color[] ToColors(this NativeList<float4> colors) {
+            var vectors = new NativeArray<Color>(colors.AsArray().Reinterpret<Color>(), Allocator.Temp);
+            var array = vectors.ToArray();
+            vectors.Dispose();
+            return array;
         }
     }
 

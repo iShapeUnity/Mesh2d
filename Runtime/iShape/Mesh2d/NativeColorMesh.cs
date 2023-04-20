@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
@@ -82,10 +83,18 @@ namespace iShape.Mesh2d {
             }
         }
     
-        public Mesh Convert() {
+        public Mesh Convert(bool isDebug = false) {
             var mesh = new Mesh();
-            
-            Fill(mesh);
+
+            if (isDebug) {
+                mesh.Clear();
+                mesh.vertices = this.vertices.AsArray().Reinterpret<Vector3>().ToArray();
+                mesh.colors = this.colors.AsArray().Reinterpret<Color>().ToArray();
+                mesh.triangles = this.triangles.ToArray();
+                mesh.RecalculateBounds();
+            } else {
+                Fill(mesh);    
+            }
 
             this.Dispose();
 
@@ -93,6 +102,22 @@ namespace iShape.Mesh2d {
         }
         
         public void Fill(Mesh mesh) {
+#if UNITY_EDITOR
+            DebugFill(mesh);
+#else
+            ReleaseFill(mesh);
+#endif
+        }
+
+        public void DebugFill(Mesh mesh) {
+            mesh.Clear();
+            mesh.vertices = vertices.ToVertices();
+            mesh.colors = colors.ToColors();
+            mesh.triangles = triangles.ToArray();
+            mesh.MarkModified();
+        }
+
+        public void ReleaseFill(Mesh mesh) {
             int vertexCount = vertices.Length;
             mesh.SetVertexBufferParams(vertexCount, new VertexAttributeDescriptor[]
             {
@@ -111,7 +136,12 @@ namespace iShape.Mesh2d {
             
             int indexCount = triangles.Length;
             mesh.SetIndexBufferParams(indexCount, IndexFormat.UInt32);
-            mesh.SetIndexBufferData(triangles.AsArray(), 0, 0, indexCount);
+
+            var indices = new NativeArray<int>(triangles.AsArray(), Allocator.Temp);
+            
+            mesh.SetIndexBufferData(indices, 0, 0, indexCount);
+            
+            indices.Dispose();
             
             var bounds = vertices.Bounds();
             var subMeshDesc = new SubMeshDescriptor(0, indexCount, MeshTopology.Triangles) {
@@ -120,8 +150,16 @@ namespace iShape.Mesh2d {
             };
 
             mesh.SetSubMesh(0, subMeshDesc, MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontNotifyMeshUsers | MeshUpdateFlags.DontRecalculateBounds);
+            mesh.bounds = bounds;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void FillAndDispose(Mesh mesh) {
+            this.Fill(mesh);
+            this.Dispose();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Dispose() {
             this.vertices.Dispose();
             this.triangles.Dispose();
@@ -132,6 +170,14 @@ namespace iShape.Mesh2d {
             this.vertices.Clear();
             this.triangles.Clear();
             this.colors.Clear();
+        }
+
+        public void DebugLog() {
+            string s = "";
+            for (int i = 0; i < vertices.Length; ++i) {
+                s += vertices[i] + ", ";
+            }
+            Debug.Log(s);
         }
 
     }

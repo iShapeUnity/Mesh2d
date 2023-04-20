@@ -111,6 +111,28 @@ namespace iShape.Mesh2d {
         }
 
         public void Fill(Mesh mesh, Color color) {
+#if UNITY_EDITOR
+            DebugFill(mesh, color);
+#else
+            ReleaseFill(mesh, color);
+#endif
+        }
+
+        public void DebugFill(Mesh mesh, Color color) {
+            mesh.Clear();
+            
+            var colors = new Color[vertices.Length];
+            for (int i = 0; i < vertices.Length; ++i) {
+                colors[i] = color;
+            }
+            mesh.vertices = vertices.ToVertices();
+            
+            mesh.colors = colors;
+            mesh.triangles = triangles.ToArray();
+            mesh.MarkModified();
+        }
+        
+        public void ReleaseFill(Mesh mesh, Color color) {
             int vertexCount = vertices.Length;
             mesh.SetVertexBufferParams(vertexCount, new VertexAttributeDescriptor[]
             {
@@ -135,10 +157,10 @@ namespace iShape.Mesh2d {
             var bounds = vertices.Bounds();
             var subMeshDesc = new SubMeshDescriptor(0, indexCount, MeshTopology.Triangles) {
                 bounds = bounds,
-                vertexCount = vertexCount
+                vertexCount = vertexCount,
             };
-
             mesh.SetSubMesh(0, subMeshDesc, MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontNotifyMeshUsers | MeshUpdateFlags.DontRecalculateBounds);
+            mesh.bounds = bounds;
         }
 
         public void Dispose() {

@@ -30,10 +30,6 @@ namespace iShape.Mesh2d {
         
         internal static StaticPrimitiveMesh Circle(float2 center, float radius, int count, bool isFront, float z, Allocator allocator) {
             float da = 2 * math.PI / count;
-
-            if (!isFront) {
-                da = -da;
-            }
             
             var vertices = new NativeArray<float3>(count + 1, allocator);
             var triangles = new NativeArray<int>(3 * count, allocator);

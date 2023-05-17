@@ -75,7 +75,7 @@ namespace iShape.Mesh2d {
                 mesh.Clear();
                 mesh.vertices = this.vertices.AsArray().Reinterpret<Vector3>().ToArray();
                 mesh.uv = this.uvs.AsArray().Reinterpret<Vector2>().ToArray();
-                mesh.triangles = this.triangles.ToArray();
+                mesh.triangles = this.triangles.AsArray().ToArray();
                 mesh.RecalculateBounds();
             } else {
                 Fill(mesh);    

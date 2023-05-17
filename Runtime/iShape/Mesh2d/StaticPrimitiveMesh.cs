@@ -57,7 +57,7 @@ namespace iShape.Mesh2d {
 
         private void DebugFill(Mesh mesh) {
             mesh.Clear();
-            mesh.vertices = vertices.ToVertices();
+            mesh.vertices = vertices.Reinterpret<Vector3>().ToArray();
             mesh.triangles = triangles.ToArray();
             mesh.MarkModified();
         }
@@ -101,7 +101,7 @@ namespace iShape.Mesh2d {
         
         private void DebugFill(Mesh mesh, Color color) {
             mesh.Clear();
-            mesh.vertices = vertices.ToVertices();
+            mesh.vertices = vertices.Reinterpret<Vector3>().ToArray();
             mesh.triangles = triangles.ToArray();
 
             var colors = new Color[vertices.Length];

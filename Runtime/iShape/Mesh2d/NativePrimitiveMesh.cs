@@ -125,10 +125,10 @@ namespace iShape.Mesh2d {
             for (int i = 0; i < vertices.Length; ++i) {
                 colors[i] = color;
             }
-            mesh.vertices = vertices.ToVertices();
+            mesh.vertices = vertices.AsArray().Reinterpret<Vector3>().ToArray();
             
             mesh.colors = colors;
-            mesh.triangles = triangles.ToArray();
+            mesh.triangles = triangles.AsArray().ToArray();
             mesh.MarkModified();
         }
         

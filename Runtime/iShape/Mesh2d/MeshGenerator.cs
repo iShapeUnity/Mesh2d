@@ -84,7 +84,7 @@ namespace iShape.Mesh2d {
         /// <param name="z">The Z position of the shape.</param>
         /// <param name="allocator">The memory allocator to use.</param>
         /// <returns>A mesh representing the shape.</returns>
-        public static StaticPrimitiveMesh Rect(float2 center, float2 size, float z, Allocator allocator) {
+        public static StaticPrimitiveMesh FillRect(float2 center, float2 size, float z, Allocator allocator) {
             return PrimitiveShape.Rect(center, size, z, allocator);
         }
         

@@ -90,7 +90,7 @@ namespace iShape.Mesh2d {
                 mesh.Clear();
                 mesh.vertices = this.vertices.AsArray().Reinterpret<Vector3>().ToArray();
                 mesh.colors = this.colors.AsArray().Reinterpret<Color>().ToArray();
-                mesh.triangles = this.triangles.ToArray();
+                mesh.triangles = this.triangles.AsArray().ToArray();
                 mesh.RecalculateBounds();
             } else {
                 Fill(mesh);    
@@ -111,9 +111,9 @@ namespace iShape.Mesh2d {
 
         public void DebugFill(Mesh mesh) {
             mesh.Clear();
-            mesh.vertices = vertices.ToVertices();
-            mesh.colors = colors.ToColors();
-            mesh.triangles = triangles.ToArray();
+            mesh.vertices = vertices.AsArray().Reinterpret<Vector3>().ToArray();
+            mesh.colors = colors.AsArray().Reinterpret<Color>().ToArray();
+            mesh.triangles = triangles.AsArray().ToArray();
             mesh.MarkModified();
         }
 

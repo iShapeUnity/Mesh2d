@@ -1,5 +1,18 @@
 # Change Log
 
+
+## [0.0.7] - 2023-05-17
+
+### Added
+
+- switch to "com.unity.collections": "2.1.4"
+
+### Fixes
+
+## [0.0.6] - 2023-05-01
+
+### Fixes
+
 ## [0.0.5] - 2023-03-05
 
 ### Fixes

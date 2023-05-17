@@ -65,7 +65,7 @@ public class Example : MonoBehaviour {
         mesh.AddAndDispose(starMesh, Color.yellow);
 
         // Generate a white circle mesh
-        var circleShape = MeshGenerator.FillCircle(new float2(6, 0), 1.0f,32, true, 0, Allocator.Temp);
+        var circleShape = MeshGenerator.FillCircle(new float2(6, 0), 1.0f,32, 0, Allocator.Temp);
         mesh.AddAndDispose(circleShape, Color.white);
 
         // Generate a white rectangle mesh

@@ -28,7 +28,7 @@ namespace iShape.Mesh2d {
             return new StaticPrimitiveMesh(vertices, triangles);
         }
         
-        internal static StaticPrimitiveMesh Circle(float2 center, float radius, int count, bool isFront, float z, Allocator allocator) {
+        internal static StaticPrimitiveMesh Circle(float2 center, float radius, int count, float z, Allocator allocator) {
             float da = 2 * math.PI / count;
             
             var vertices = new NativeArray<float3>(count + 1, allocator);

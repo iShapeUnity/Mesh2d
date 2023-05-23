@@ -2,7 +2,7 @@
 Mesh2d is a lightweight library for generating 2D stroke meshes in Unity. It build over Native Arrays and is compatible with Unity's Burst Compiler for improved performance.
 
 <p align="center">
-<img src="https://github.com/iShapeUnity/Mesh2d/blob/main/mesh2d.svg" width="500"/>
+<img src="https://github.com/iShapeUnity/Mesh2d/blob/main/mesh2d.svg" width="800"/>
 </p>
 
 

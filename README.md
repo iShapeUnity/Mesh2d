@@ -9,13 +9,6 @@ Mesh2d is a lightweight library for generating 2D stroke meshes in Unity. It bui
 ## Installation
 To use iShape.Mesh2d in your Unity project, follow these steps:
 
-Open your Unity project.
-Ensure that your Unity version is 2022.2 or above.
-Check that you have the following packages installed (these are dependencies for iShape.Mesh2d):
-com.unity.mathematics version 1.2.6 or later
-com.unity.collections version 2.1.4 or later
-You can check this in Unity's Package Manager (Window > Package Manager). If you don't have these packages installed, you can add them through the Package Manager.
-
 - Open your Unity project.
 - Ensure that your Unity version is 2022.2 or above.
 - Check that you have the following packages installed (these are dependencies for iShape.Mesh2d):

@@ -9,7 +9,18 @@ Mesh2d is a lightweight library for generating 2D stroke meshes in Unity. It bui
 ## Installation
 To use iShape.Mesh2d in your Unity project, follow these steps:
 
+Open your Unity project.
+Ensure that your Unity version is 2022.2 or above.
+Check that you have the following packages installed (these are dependencies for iShape.Mesh2d):
+com.unity.mathematics version 1.2.6 or later
+com.unity.collections version 2.1.4 or later
+You can check this in Unity's Package Manager (Window > Package Manager). If you don't have these packages installed, you can add them through the Package Manager.
+
 - Open your Unity project.
+- Ensure that your Unity version is 2022.2 or above.
+- Check that you have the following packages installed (these are dependencies for iShape.Mesh2d):
+    - \`**com.unity.mathematics**\` version 1.2.6 or later
+    - \`**com.unity.collections**\` version 2.1.4 or later
 - In the top menu, select "Window" > "Package Manager".
 - Click on the "+" button in the top-left corner of the Package Manager window.
 - Select "Add package from git URL...".
@@ -85,7 +96,7 @@ public class Example : MonoBehaviour {
 }
 ```
 
-In this example, we're generating four different stroke meshes (for an edge, a rectangle, a circle, and a soft star) and adding them to a NativeColorMesh. Then, we're setting the resulting mesh as the MeshFilter's mesh.
+In this example, we're generating stroke and shape meshes and after we adding them to a NativeColorMesh. Then, we're setting the resulting mesh as the MeshFilter's mesh.
 
 For more information on how to use iShape.Mesh2d, please see [MeshGenerator](https://github.com/iShapeUnity/Mesh2d/blob/main/Runtime/iShape/Mesh2d/MeshGenerator.cs)
 

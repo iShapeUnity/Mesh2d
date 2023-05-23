@@ -54,8 +54,10 @@ namespace iShape.Mesh2d {
             float2 b = path[1];
             
             Segment seg0 = new Segment(a, b);
-            
-            JoinCap(ref vertices, ref triangles,seg0.ortho, a, r, z);
+
+            if (strokeStyle.StartCap) {
+                JoinCap(ref vertices, ref triangles,seg0.ortho, a, r, z);                
+            }
             JoinSegment(ref vertices, ref triangles, seg0, r, strokeStyle.Step, z);
 
             for(int i = 2; i < n; ++i) {
@@ -66,8 +68,10 @@ namespace iShape.Mesh2d {
 
                 seg0 = seg1;
             }
-            
-            JoinCap(ref vertices, ref triangles,-seg0.ortho, seg0.b, r, z);
+
+            if (strokeStyle.EndCap) {
+                JoinCap(ref vertices, ref triangles,-seg0.ortho, seg0.b, r, z);                
+            }
 
             return new NativePrimitiveMesh(vertices, triangles);
         }

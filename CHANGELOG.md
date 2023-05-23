@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.0.8] - 2023-05-23
+
+### Added
+
+- StartCap/EndCap for StrokeStyle
 
 ## [0.0.7] - 2023-05-17
 
